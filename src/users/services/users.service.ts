@@ -11,7 +11,7 @@ export class UsersService {
   constructor(
     private productService: ProductsService,
     private configService: ConfigService,
-  ) { }
+  ) {}
 
   private counterId = 1;
   private users: User[] = [
@@ -72,7 +72,7 @@ export class UsersService {
     return {
       date: new Date(),
       user,
-      products: this.productService.findAll()
+      products: this.productService.findAll(),
     };
   }
 }

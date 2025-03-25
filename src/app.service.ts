@@ -5,12 +5,10 @@ import config from './config';
 @Injectable()
 export class AppService {
   constructor(
-    // @Inject('API_KEY') private apiKey: string,
     @Inject('TASKS') private tasks: any[],
     @Inject(config.KEY) private congfigService: ConfigType<typeof config>,
-  ) { }
+  ) {}
   getHello(): string {
-    // console.log(this.tasks);
     const apiKey = this.congfigService.apiKey;
     const name = this.congfigService.database.name;
     return `Hello World! ${apiKey} ${name}`;
