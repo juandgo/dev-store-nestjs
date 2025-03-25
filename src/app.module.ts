@@ -24,23 +24,24 @@ import config from './config';
         DATABASE_PORT: Joi.number().required(),
       }),
     }),
-    HttpModule, 
-    UsersModule, 
-    ProductsModule, 
+    HttpModule,
+    UsersModule,
+    ProductsModule,
     DatabaseModule,
   ],
   controllers: [AppController],
-  providers: [AppService,
+  providers: [
+    AppService,
     {
       provide: 'TASKS',
       useFactory: async (http: HttpService) => {
-        const tasks = await firstValueFrom(http
-          .get('https:/jsonplaceholder.typicode.com/todos')
+        const tasks = await firstValueFrom(
+          http.get('https:/jsonplaceholder.typicode.com/todos'),
         );
         return tasks.data;
       },
       inject: [HttpService],
-    }
+    },
   ],
 })
-export class AppModule { }
+export class AppModule {}

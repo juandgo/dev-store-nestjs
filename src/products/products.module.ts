@@ -7,10 +7,9 @@ import { ProductsService } from './services/products.service';
 import { CategoriesService } from './services/categories.service';
 import { BrandsService } from './services/brands.service';
 
-
 @Module({
-    controllers: [ProductsController, CategoriesController, BrandsController],
-    providers:[ProductsService, CategoriesService, BrandsService],
-    exports: [ProductsService],
+  controllers: [ProductsController, CategoriesController, BrandsController],
+  providers: [ProductsService, CategoriesService, BrandsService],
+  exports: [ProductsService],
 })
-export class ProductsModule { }
+export class ProductsModule {}
