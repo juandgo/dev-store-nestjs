@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { HttpModule, HttpService } from '@nestjs/axios';
 import * as Joi from 'joi';
-import { Client } from 'pg';
+// import { Client } from 'pg';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -13,19 +13,19 @@ import { DatabaseModule } from './database/database.module';
 import { enviroments } from './enviroments';
 import config from './config';
 
-const client = new Client({
-  user: 'juan',
-  host: 'localhost',
-  database: 'my_store',
-  password: 'admin123',
-  port: 5432,
-});
+// const client = new Client({
+//   user: 'juan',
+//   host: 'localhost',
+//   database: 'my_store',
+//   password: 'admin123',
+//   port: 5432,
+// });
 
-client.connect();
-client.query('SELECT * FROM tasks', (err, res) => {
-  console.error(err);
-  console.log(res.rows);
-});
+// client.connect();
+// client.query('SELECT * FROM tasks', (err, res) => {
+//   console.error(err);
+//   console.log(res.rows);
+// });
 
 @Module({
   imports: [
@@ -59,4 +59,4 @@ client.query('SELECT * FROM tasks', (err, res) => {
     },
   ],
 })
-export class AppModule { }
+export class AppModule {}
