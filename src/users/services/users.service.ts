@@ -13,7 +13,7 @@ export class UsersService {
     private productService: ProductsService,
     private configService: ConfigService,
     @Inject('PG') private clientPg: Client,
-  ) { }
+  ) {}
 
   private counterId = 1;
   private users: User[] = [
@@ -69,12 +69,12 @@ export class UsersService {
     return true;
   }
 
-  getOrderByUser(id: number): Order {
+  async getOrderByUser(id: number) {
     const user = this.findOne(id);
     return {
       date: new Date(),
       user,
-      products: this.productService.findAll(),
+      products: await this.productService.findAll(),
     };
   }
 

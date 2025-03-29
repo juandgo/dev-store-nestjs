@@ -1,4 +1,3 @@
-
 import { registerAs } from '@nestjs/config';
 
 export default registerAs('config', () => {
@@ -8,10 +7,10 @@ export default registerAs('config', () => {
       name: process.env.DATABASE_NAME,
       port: process.env.DATABASE_PORT,
     },
-    postgres: { // 👈 add config
+    postgres: {
+      // 👈 add config
       dbName: process.env.POSTGRES_DB,
-      port: parseInt(process.env.POSTGRES_PORT|| "5432", 10),
-      // port: process.env.POSTGRES_PORT,
+      port: parseInt(process.env.POSTGRES_PORT || '5432', 10),
       password: process.env.POSTGRES_PASSWORD,
       user: process.env.POSTGRES_USER,
       host: process.env.POSTGRES_HOST,

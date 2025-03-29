@@ -3,7 +3,6 @@ import { ConfigType } from '@nestjs/config';
 import { Client } from 'pg';
 import config from './config';
 
-
 @Injectable()
 export class AppService {
   constructor(

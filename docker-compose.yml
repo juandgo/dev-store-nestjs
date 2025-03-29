@@ -3,7 +3,7 @@
 services:
   postgres:
     image: postgres:13
-    container_name: devtec-store-postgres-1
+    container_name: devtec-store-postgres-1 #this is to put en instead o the ip
     environment:
       - POSTGRES_DB=my_store
       - POSTGRES_USER=juan

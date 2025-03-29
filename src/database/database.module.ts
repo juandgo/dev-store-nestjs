@@ -1,10 +1,13 @@
 import { Module, Global } from '@nestjs/common';
-import { Client } from 'pg';
 import { ConfigType } from '@nestjs/config';
+import { Client } from 'pg';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Product } from '../products/entities/product.entity';
+
 import config from '../config';
 
-const API_KEY = '12345678';
-const API_KEY_PROD = 'PORD121212';
+const API_KEY = '12345634';
+const API_KEY_PROD = 'PROD1212121SA';
 
 // client.query('SELECT * FROM tasks', (err, res) => {
 //   console.error(err);
@@ -13,6 +16,26 @@ const API_KEY_PROD = 'PORD121212';
 
 @Global()
 @Module({
+  imports: [
+    TypeOrmModule.forRootAsync({
+      inject: [config.KEY],
+      useFactory: (configService: ConfigType<typeof config>) => {
+        const { user, host, dbName, password, port } = configService.postgres;
+        return {
+          type: 'postgres',
+          host,
+          port,
+          username: user,
+          password,
+          database: dbName,
+          entities: [Product],
+          synchronize: true, // 👈 new attr
+          autoLoadEntities: true, // 👈 new attr
+        };
+      },
+    }),
+    TypeOrmModule.forFeature([Product]),
+  ],
   providers: [
     {
       provide: 'API_KEY',
@@ -21,7 +44,6 @@ const API_KEY_PROD = 'PORD121212';
     {
       provide: 'PG',
       useFactory: (configService: ConfigType<typeof config>) => {
-        // 👈
         const { user, host, dbName, password, port } = configService.postgres;
         const client = new Client({
           user,
@@ -36,6 +58,6 @@ const API_KEY_PROD = 'PORD121212';
       inject: [config.KEY],
     },
   ],
-  exports: ['API_KEY', 'PG'],
+  exports: ['API_KEY', 'PG', TypeOrmModule],
 })
 export class DatabaseModule {}
