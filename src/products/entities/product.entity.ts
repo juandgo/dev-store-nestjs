@@ -5,8 +5,11 @@ export class Product {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'varchar', length: 255, unique: true })
+  @Column({ type: 'varchar', length: 50, unique: true })
   name: string;
+
+  @Column({ type: 'varchar', length: 50, unique: true })
+  brand: string;
 
   @Column({ type: 'text' })
   description: string;

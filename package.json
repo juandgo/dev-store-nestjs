@@ -5,6 +5,7 @@
   "author": "",
   "private": true,
   "license": "UNLICENSED",
+  "type": "module",
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -18,8 +19,12 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
-    "migrations:generate": "npm run typeorm -- migration:generate -n"
+    "typeorm": "typeorm-ts-node-esm -d src/database/data-source.ts",
+    "migrations:generate": "npm run typeorm -- migration:generate",
+    "migrations:run": "npm run typeorm -- migration:run",
+    "migrations:show": "npm run typeorm -- migration:show",
+    "migrations:drop": "npm run typeorm -- schema:drop",
+    "migrations:revert": "npm run typeorm -- migration:revert"
   },
   "dependencies": {
     "@nestjs/axios": "^4.0.0",
@@ -51,7 +56,7 @@
     "@swc/core": "^1.11.13",
     "@types/express": "^5.0.1",
     "@types/jest": "^29.5.14",
-    "@types/node": "^22.13.14",
+    "@types/node": "^22.13.16",
     "@types/pg": "^8.11.11",
     "@types/supertest": "^6.0.3",
     "eslint": "^9.23.0",
