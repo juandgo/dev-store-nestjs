@@ -188,3 +188,4 @@ pids
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 >>>>>>> 800d166 (Curso de NestJS: Programación Modular, Documentación con Swagger y Deploy)
 /postgres_data
+/mysql_data

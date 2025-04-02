@@ -3,6 +3,11 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
 
+// import { randomUUID } from 'crypto';
+
+// if (!global.crypto) {
+//   (global as any).crypto = { randomUUID };
+// }
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(
